@@ -14,3 +14,52 @@ It includes Docker, Kubernetes, and Infrastructure as Code examples.
 
 
  experiment
+ # ITSA-5501 Project
+
+## Repository Structure
+
+
+---
+
+## Git Workflow
+
+We follow a **Git workflow** that ensures organized collaboration:
+
+1. **Branches**
+   - `main`: The stable branch with production-ready code.
+   - `experiment` / feature branches: For new features, experiments, or fixes.
+
+2. **Merging**
+   - Changes from feature branches are merged into `main` using pull requests.
+   - Conflicts are resolved locally before committing.
+
+3. **Pull Requests (PRs)**
+   - Create a PR when a feature branch is ready to merge.
+   - PRs are reviewed, approved, and then merged into `main`.
+
+4. **Tagging**
+   - Tags are created for major releases or milestones.
+   - Example:
+     ```bash
+     git tag v1.0
+     git push origin v1.0
+     ```
+
+---
+
+## Tools Used
+
+- **VS Code** – Code editor
+- **Git & GitHub** – Version control and repository hosting
+- **Docker** – Containerization
+- **Kubernetes (k8s)** – Orchestration
+- **Infrastructure as Code (IaC)** tools as needed
+
+---
+
+## Instructions for Future Contributions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/rihu2523-collab/ITSA-5501-Project.git
+   cd ITSA-5501-Project
