@@ -1,13 +1,11 @@
-version: '3.8'
-
 services:
   frontend:
     image: nginx:alpine
-    container_name: frontend
+    # do NOT set container_name for frontend (allows scaling)
     ports:
-      - "9090:80"
+      - "9090:80"      # one stable public port for the first frontend
     volumes:
-      - ./frontend:/usr/share/nginx/html:ro
+      - ../frontend:/usr/share/nginx/html:ro
     networks:
       - app-network
 
@@ -41,7 +39,7 @@ services:
     image: prom/prometheus
     container_name: prometheus
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ../prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9091:9090"
     networks:
