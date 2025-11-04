@@ -1,9 +1,10 @@
 services:
   frontend:
     image: nginx:alpine
-    # do NOT set container_name for frontend (allows scaling)
-    ports:
-      - "9090:80"      # one stable public port for the first frontend
+    expose:
+      - "80"
+    deploy:
+      replicas: 3
     volumes:
       - ../frontend:/usr/share/nginx/html:ro
     networks:
