@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: nginx:alpine
+    container_name: frontend
+    ports:
+      - "9090:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    networks:
+      - app-network
+
+  user-db:
+    image: mongo:latest
+    container_name: user-db
+    volumes:
+      - user_data:/data/db
+    networks:
+      - app-network
+
+  product-db:
+    image: postgres:latest
+    container_name: product-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: productdb
+    volumes:
+      - product_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  cache:
+    image: redis:alpine
+    container_name: cache
+    networks:
+      - app-network
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9091:9090"
+    networks:
+      - app-network
+
+volumes:
+  user_data:
+  product_data:
+
+networks:
+  app-network:
+    driver: bridge
